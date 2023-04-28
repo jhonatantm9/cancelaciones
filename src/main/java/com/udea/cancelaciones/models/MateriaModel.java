@@ -4,7 +4,7 @@ package com.udea.cancelaciones.models;
 public class MateriaModel {
     int codigo;
     String nombre;
-    int creditos;
+    String profesor;
     
     public MateriaModel(int codigo, String nombre) {
         this.codigo = codigo;
