@@ -1,7 +1,9 @@
-package test.java.com.udea.cancelaciones.models;
+
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
+
+import com.udea.cancelaciones.models.MateriaModel;
 
 public class MateriaModelTest {
     @Test
