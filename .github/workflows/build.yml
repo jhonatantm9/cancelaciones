@@ -37,11 +37,11 @@ jobs:
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.qualitygate.wait=true -Dsonar.projectKey=cancelaciones
       - name: Verify SonarQube Quality Gate
         run: |
-        status=$(curl -X GET -u ${{ secrets.SONAR_TOKEN }}: "https://sonarcloud.io/api/qualitygates/project_status?projectKey=cancelaciones" | jq -r '.projectStatus.status')
-        if [[ "$status" != "OK" ]]; then
-          echo "Quality Gate failed, push and merge not allowed"
-          exit 1
-        fi
+          status=$(curl -X GET -u ${{ secrets.SONAR_TOKEN }}: "https://sonarcloud.io/api/qualitygates/project_status?projectKey=cancelaciones" | jq -r '.projectStatus.status')
+          if [[ "$status" != "OK" ]]; then
+            echo "Quality Gate failed, push and merge not allowed"
+            exit 1
+          fi
       # - name: Verify SonarQube Quality Gate
       #   env:
       #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
