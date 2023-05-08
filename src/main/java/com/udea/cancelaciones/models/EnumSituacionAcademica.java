@@ -1,4 +1,4 @@
-package com.udea.cancelaciones.repository.models;
+package com.udea.cancelaciones.models;
 
 public enum EnumSituacionAcademica {
     ANTIGUONORMAL

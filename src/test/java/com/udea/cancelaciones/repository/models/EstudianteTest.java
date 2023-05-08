@@ -1,6 +1,10 @@
 package com.udea.cancelaciones.repository.models;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import com.udea.cancelaciones.models.EnumSituacionAcademica;
+import com.udea.cancelaciones.models.Estudiante;
+import com.udea.cancelaciones.models.Materia;
 import org.junit.jupiter.api.Test;
 
 public class EstudianteTest {

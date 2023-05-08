@@ -2,9 +2,12 @@ package com.udea.cancelaciones.repository.models;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.Date;
+
+import com.udea.cancelaciones.models.Estudiante;
+import com.udea.cancelaciones.models.Solicitud;
 import org.junit.jupiter.api.Test;
 
-public class SolicitudTest extends Solicitud{
+public class SolicitudTest extends Solicitud {
     @Test
     void testGetEstudiante() {
         this.estudiante = new Estudiante();

@@ -1,4 +1,4 @@
-package com.udea.cancelaciones.repository.models;
+package com.udea.cancelaciones.models;
 
 public class SolicitudCancelarSemestre extends Solicitud{
     

@@ -1,9 +1,11 @@
 package com.udea.cancelaciones.repository.models;
 
+import com.udea.cancelaciones.models.EnumTipoDoc;
+import com.udea.cancelaciones.models.Usuario;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class UsuarioTest extends Usuario{
+public class UsuarioTest extends Usuario {
     @Test
     void testGetApellidos() {
         this.apellidos = "Escobar Rendón";
