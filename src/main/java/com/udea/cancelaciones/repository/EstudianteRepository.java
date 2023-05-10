@@ -8,4 +8,7 @@ import org.springframework.stereotype.Repository;
 public interface EstudianteRepository extends JpaRepository<Estudiante, Integer> {
 
     //Esta clase ya puede hacer todo lo que necesita para acceder a labase de datos por JPA
+
+    public Estudiante findByDocumentoEstudiante(String documento);
+
 }

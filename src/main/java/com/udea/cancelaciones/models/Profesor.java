@@ -1,27 +1,26 @@
 package com.udea.cancelaciones.models;
 
-import javax.persistence.*;
-
 import com.sun.istack.NotNull;
 import lombok.Data;
 
+import javax.persistence.*;
 import java.util.Set;
 
-
 @Entity
-@Table(name = "estudiante")
+@Table(name = "profesor")
 @Data
-public class Estudiante{
+public class Profesor {
+
 
     @Id
     @NotNull
-    @Column(name = "documento_estudiante")
-    private String documentoEstudiante;
+    @Column(name = "documento_profesor")
+    private String documentoProfesor;
 
 
     @NotNull
-    @Column(name = "tipo_documento_estudiante")
-    private String tipoDocumentoEstudiante;
+    @Column(name = "tipo_documento_profesor")
+    private String tipoDocumentoProfesor;
 
     @NotNull
     @Column(name = "nombre")
@@ -40,10 +39,6 @@ public class Estudiante{
     private String telefono;
 
     @NotNull
-    @Column(name = "estrato")
-    private int estrato;
-
-    @NotNull
     @Column(name = "usuario_institucional")
     private String usuarioInstitucional;
 
@@ -52,15 +47,11 @@ public class Estudiante{
     private String contraseña;
 
 
-    //RELACIONES
-    @OneToMany(mappedBy = "estudiante", fetch = FetchType.LAZY)
-    private Set<EstudianteMateria> estudianteMateriaSet;
+    @OneToMany(mappedBy = "profesor", fetch = FetchType.LAZY)
+    private Set<ProfesorMateria> profesorMateriaSet;
 
 
-    @OneToMany(mappedBy = "estudiante", fetch = FetchType.LAZY)
-    private Set<SolicitudCancelacion> solicitudCancelacionSet;
-
-    public Estudiante(){
+    public Profesor() {
 
     }
 }

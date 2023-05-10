@@ -1,40 +1,39 @@
 package com.udea.cancelaciones.models;
 
+import com.sun.istack.NotNull;
+import lombok.Data;
+
+import javax.persistence.*;
+import java.util.Set;
+
+@Entity
+@Table(name = "materia")
+@Data
 public class Materia {
+
+    @Id
+    @Column(name = "id_materia")
+    private String idMateria;
+
+    @NotNull
+    @Column(name = "nombre")
     private String nombre;
-    private String codigo;
-    private String grupo;
-    private int creditos;
-    private int numeroCancelaciones;
-    
-    public String getNombre() {
-        return nombre;
-    }
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-    public String getCodigo() {
-        return codigo;
-    }
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
-    public String getGrupo() {
-        return grupo;
-    }
-    public void setGrupo(String grupo) {
-        this.grupo = grupo;
-    }
-    public int getCreditos() {
-        return creditos;
-    }
-    public void setCreditos(int creditos) {
-        this.creditos = creditos;
-    }
-    public int getNumeroCancelaciones() {
-        return numeroCancelaciones;
-    }
-    public void setNumeroCancelaciones(int numeroCancelaciones) {
-        this.numeroCancelaciones = numeroCancelaciones;
+
+    @NotNull
+    @Column(name = "creditos")
+    private String creditos;
+
+    @NotNull
+    @Column(name = "habilitable")
+    private String habilitable;
+
+    @OneToMany(mappedBy = "materia", fetch = FetchType.LAZY)
+    private Set<EstudianteMateria> estudianteMateriaSet;
+
+    @OneToMany(mappedBy = "materia", fetch = FetchType.LAZY)
+    private Set<ProfesorMateria> profesorMateriaSet;
+
+    public Materia() {
+
     }
 }

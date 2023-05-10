@@ -20,9 +20,12 @@ public class EstudianteService {
     }
 
     public List<Estudiante> findAll(){
-
         var listaEstudiantes = estudianteRepository.findAll();
-
         return listaEstudiantes;
+    }
+
+    public Estudiante findByDocumentoEstudiante(String documento){
+        var estudiante = estudianteRepository.findByDocumentoEstudiante(documento);
+        return estudiante;
     }
 }
