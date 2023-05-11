@@ -24,13 +24,13 @@ public class ProfesorMateria {
     private String semestreMatricula;
 
 
-    @ManyToOne
-    @JoinColumn(name = "documento_profesor_fk")
+    /*@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "documento_profesor", insertable=false, updatable=false)
     private Profesor profesor;
 
-    @ManyToOne
-    @JoinColumn(name = "id_materia_fk")
-    private Materia materia;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_materia", insertable=false, updatable=false)
+    private Materia materia;*/
 
     public ProfesorMateria() {
 

@@ -47,8 +47,8 @@ public class Profesor {
     private String contraseña;
 
 
-    @OneToMany(mappedBy = "profesor", fetch = FetchType.LAZY)
-    private Set<ProfesorMateria> profesorMateriaSet;
+    /*@OneToMany(mappedBy = "profesor", fetch = FetchType.LAZY)
+    private Set<ProfesorMateria> profesorMateriaSet;*/
 
 
     public Profesor() {

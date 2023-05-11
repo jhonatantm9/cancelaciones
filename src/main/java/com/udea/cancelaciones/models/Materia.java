@@ -27,11 +27,12 @@ public class Materia {
     @Column(name = "habilitable")
     private String habilitable;
 
-    @OneToMany(mappedBy = "materia", fetch = FetchType.LAZY)
+    /*@OneToMany(mappedBy = "materia", fetch = FetchType.LAZY)
     private Set<EstudianteMateria> estudianteMateriaSet;
 
+
     @OneToMany(mappedBy = "materia", fetch = FetchType.LAZY)
-    private Set<ProfesorMateria> profesorMateriaSet;
+    private Set<ProfesorMateria> profesorMateriaSet;*/
 
     public Materia() {
 

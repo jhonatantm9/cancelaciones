@@ -10,12 +10,12 @@ import javax.persistence.*;
 @Data
 public class EstudianteMateria {
 
-
+    @Id
     @NotNull
     @Column(name = "id_materia")
     private String idMateria;
 
-    @Id
+
     @NotNull
     @Column(name = "documento_estudiante")
     private String documentoEstudiante;
@@ -29,19 +29,18 @@ public class EstudianteMateria {
     private String estado;
 
 
-
     //RELACIONES
-    @ManyToOne
-    @JoinColumn(name ="documento_estudiante_fk")
+    /*@ManyToOne
+    @JoinColumn(name ="documento_estudiante")
     private Estudiante estudiante;
 
     @ManyToOne
-    @JoinColumn(name = "id_materia_fk")
+    @JoinColumn(name = "id_materia")
     private Materia materia;
 
     @OneToOne
-    @JoinColumn(name = "id_solicitud_cancelacion_fk")
-    private SolicitudCancelacion solicitudCancelacion;
+    @JoinColumn(name = "id_solicitud_cancelacion")
+    private SolicitudCancelacion solicitudCancelacion;*/
 
 
     public EstudianteMateria() {

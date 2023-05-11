@@ -43,14 +43,14 @@ public class SolicitudCancelacion {
 
     //RELACIONES
 
-    @ManyToOne
-    @JoinColumn(name = "documento_estudiante_fk")
+    /*@ManyToOne
+    @JoinColumn(name = "documento_estudiante")
     private Estudiante estudiante;
 
 
 
     @OneToOne(mappedBy = "solicitudCancelacion")
-    private EstudianteMateria estudianteMateria;
+    private EstudianteMateria estudianteMateria;*/
 
 
     public SolicitudCancelacion() {

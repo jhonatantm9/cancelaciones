@@ -51,14 +51,14 @@ public class Estudiante{
     @Column(name = "contraseña")
     private String contraseña;
 
-
+/*
     //RELACIONES
     @OneToMany(mappedBy = "estudiante", fetch = FetchType.LAZY)
     private Set<EstudianteMateria> estudianteMateriaSet;
 
 
     @OneToMany(mappedBy = "estudiante", fetch = FetchType.LAZY)
-    private Set<SolicitudCancelacion> solicitudCancelacionSet;
+    private Set<SolicitudCancelacion> solicitudCancelacionSet;*/
 
     public Estudiante(){
 
