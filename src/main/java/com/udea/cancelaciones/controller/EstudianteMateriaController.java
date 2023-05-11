@@ -19,7 +19,7 @@ public class EstudianteMateriaController {
     //http://localhost:8080/api/estudiante-materia/find-all
     //http://localhost:8080/api/estudiante-materia/get-materia-estudiante/992023
 
-    
+
     private EstudianteMateriaService estudianteMateriaService;
 
     public EstudianteMateriaController(EstudianteMateriaService estudianteMateriaService) {
