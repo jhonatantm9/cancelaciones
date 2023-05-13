@@ -2,8 +2,8 @@ package com.udea.cancelaciones.models;
 
 import com.sun.istack.NotNull;
 import lombok.Data;
-
 import javax.persistence.*;
+
 
 @Entity
 @Table(name = "estudiante_materia")
@@ -27,6 +27,8 @@ public class EstudianteMateria {
     @NotNull
     @Column(name = "estado")
     private String estado;
+
+
 
 
     //RELACIONES

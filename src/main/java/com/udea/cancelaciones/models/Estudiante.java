@@ -1,11 +1,9 @@
 package com.udea.cancelaciones.models;
 
 import javax.persistence.*;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 import lombok.Data;
-
 import java.util.Set;
 
 
@@ -58,9 +56,9 @@ public class Estudiante{
     @OneToMany(mappedBy = "estudiante")
     private Set<EstudianteMateria> estudianteMateriaSet;
 
-
-    /*@OneToMany(mappedBy = "estudiante", fetch = FetchType.LAZY)
-    private Set<SolicitudCancelacion> solicitudCancelacionSet;*/
+    @JsonIgnore
+    @OneToMany(mappedBy = "estudiante", fetch = FetchType.LAZY)
+    private Set<SolicitudCancelacion> solicitudCancelacionSet;
 
     public Estudiante(){
 

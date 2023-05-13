@@ -14,11 +14,17 @@ import java.util.List;
 @RequestMapping("/solicitud-cancelacion")
 public class SolicitudCancelacionController {
 
+
+
+
     private SolicitudCancelacionService solicitudCancelacionService;
 
     public SolicitudCancelacionController(SolicitudCancelacionService solicitudCancelacionService){
         this.solicitudCancelacionService = solicitudCancelacionService;
     }
+
+
+
 
     @GetMapping("/find-all")
     public ResponseEntity<List<SolicitudCancelacion>> findAll(){
@@ -32,9 +38,9 @@ public class SolicitudCancelacionController {
         return ResponseEntity.ok(solicitud);
     }
 
-    @GetMapping("/find-solicitud-por-id/{documento}")
-    public ResponseEntity<SolicitudCancelacion> findSolicitudCancelacionByIdSolicitudCancelacion(@PathVariable String documento){
-        var solicitud = solicitudCancelacionService.findSolicitudCancelacionByIdSolicitudCancelacion(documento);
+    @GetMapping("/find-solicitud-por-id/{id}")
+    public ResponseEntity<SolicitudCancelacion> findByIdSolicitudCancelacion(@PathVariable String id){
+        var solicitud = solicitudCancelacionService.findByIdSolicitudCancelacion(id);
         return ResponseEntity.ok(solicitud);
     }
 }
