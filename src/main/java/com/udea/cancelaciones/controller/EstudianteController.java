@@ -1,35 +1,20 @@
 package com.udea.cancelaciones.controller;
 
 import com.udea.cancelaciones.models.Estudiante;
-import com.udea.cancelaciones.models.EstudianteMateria;
-import com.udea.cancelaciones.service.EstudianteMateriaService;
 import com.udea.cancelaciones.service.EstudianteService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-<<<<<<< HEAD
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-=======
 import org.springframework.web.bind.annotation.*;
->>>>>>> prueba
 
 import java.util.List;
 
 @RestController
-<<<<<<< HEAD
 @CrossOrigin(origins="*")
-=======
-@CrossOrigin(origins = "*")
->>>>>>> prueba
 @RequestMapping("/estudiante")
 public class EstudianteController {
 
+    @Autowired
     private EstudianteService estudianteService;
-
-    public EstudianteController(EstudianteService estudianteService) {
-        this.estudianteService = estudianteService;
-    }
 
     @GetMapping("/find-all")
     public ResponseEntity<List<Estudiante>> findAll(){
@@ -37,13 +22,11 @@ public class EstudianteController {
         return ResponseEntity.ok(listaEstudiantes);
     }
 
-<<<<<<< HEAD
     @GetMapping("/find-one")
     public ResponseEntity<Estudiante> findOne(){
         var listaEstudiantes = estudianteService.findAll();
         return ResponseEntity.ok(listaEstudiantes.get(0));
     }
-=======
 
     //http://localhost:8080/api/estudiante/find-estudiante-by-documento?documento=123456
     //http://localhost:8080/api/estudiante/find-estudiante-by-documento/123456
@@ -53,7 +36,10 @@ public class EstudianteController {
         return ResponseEntity.ok(estudiante);
     }
 
-
-
->>>>>>> prueba
+    //findEstudianteByUsuarioInstitucional
+    @GetMapping("/find-estudiante-by-usuario/{usuario}")
+    public ResponseEntity<Estudiante> findEstudianteByUsuarioInstitucional(@PathVariable String usuario){
+        var estudiante = estudianteService.findEstudianteByUsuarioInstitucional(usuario);
+        return ResponseEntity.ok(estudiante);
+    }
 }

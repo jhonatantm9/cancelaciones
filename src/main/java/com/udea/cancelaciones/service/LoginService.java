@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 
 import com.udea.cancelaciones.DTO.LoginDTO;
 import com.udea.cancelaciones.DTO.LoginMensajeDTO;
-import com.udea.cancelaciones.models.Estudiante;
 import com.udea.cancelaciones.repository.EstudianteRepository;
 import javax.transaction.Transactional;
 
@@ -15,11 +14,6 @@ public class LoginService {
     
     @Autowired
     private EstudianteRepository estudianteRepository;
-
-    public Estudiante findEstudianteByUsuarioInstitucional(String usuario){
-        var estudiante = estudianteRepository.findEstudianteByUsuarioInstitucional(usuario);
-        return estudiante;
-    }
 
     public LoginMensajeDTO AutenticarLogin(LoginDTO loginDTO){
         var estudiante = estudianteRepository.findEstudianteByUsuarioInstitucional(loginDTO.getUsuario());

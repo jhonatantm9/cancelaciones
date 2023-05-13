@@ -31,5 +31,8 @@ public class EstudianteService {
         return estudiante;
     }
 
-
+    public Estudiante findEstudianteByUsuarioInstitucional(String usuario){
+        var estudiante = estudianteRepository.findEstudianteByUsuarioInstitucional(usuario);
+        return estudiante;
+    }
 }
