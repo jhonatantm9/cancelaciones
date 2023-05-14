@@ -1,6 +1,8 @@
 package com.udea.cancelaciones.controller;
 
+import com.udea.cancelaciones.DTO.EstudianteDTO;
 import com.udea.cancelaciones.models.Estudiante;
+import com.udea.cancelaciones.service.EstudianteMateriaService;
 import com.udea.cancelaciones.service.EstudianteService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,9 +17,11 @@ public class EstudianteController {
 
 
     private EstudianteService estudianteService;
+    private EstudianteMateriaService estudianteMateriaService;
 
-    public EstudianteController(EstudianteService estudianteService) {
+    public EstudianteController(EstudianteService estudianteService, EstudianteMateriaService estudianteMateriaService) {
         this.estudianteService = estudianteService;
+        this.estudianteMateriaService = estudianteMateriaService;
     }
 
 
@@ -36,11 +40,21 @@ public class EstudianteController {
     }
 
     @GetMapping("/find-estudiante-by-usuario/{usuario}")
-    public ResponseEntity<Estudiante> findByUsuarioInstitucional(@PathVariable String usuario){
-        var estudiante = estudianteService.findByUsuarioInstitucional(usuario);
-        return ResponseEntity.ok(estudiante);
+    public ResponseEntity<EstudianteDTO> findByUsuarioInstitucional(@PathVariable String usuario){
+
+        var estudiante = estudianteService.findEstudianteByUsuarioInstitucional(usuario);
+
+        var materias = estudianteMateriaService.findAllByDocumentoEstudiante(estudiante.getDocumentoEstudiante());
+
+        EstudianteDTO estudianteDTO = new EstudianteDTO();
+
+        estudianteDTO.setNombre(estudiante.getNombre());
+        estudianteDTO.setApellido(estudiante.getApellido());
+
+        estudianteDTO.setListaMaterias(materias);
+
+
+        return ResponseEntity.ok(estudianteDTO);
     }
-
-
 
 }
