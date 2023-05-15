@@ -4,18 +4,19 @@ import com.udea.cancelaciones.DTO.EstudianteDTO;
 import com.udea.cancelaciones.models.Estudiante;
 import com.udea.cancelaciones.service.EstudianteMateriaService;
 import com.udea.cancelaciones.service.EstudianteService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins="*")
 @RequestMapping("/estudiante")
 public class EstudianteController {
 
 
-
-
+  @Autowired
     private EstudianteService estudianteService;
     private EstudianteMateriaService estudianteMateriaService;
 
@@ -23,15 +24,13 @@ public class EstudianteController {
         this.estudianteService = estudianteService;
         this.estudianteMateriaService = estudianteMateriaService;
     }
-
-
-
-
+  
     @GetMapping("/find-all")
     public ResponseEntity<List<Estudiante>> findAll(){
         var listaEstudiantes = estudianteService.findAll();
         return ResponseEntity.ok(listaEstudiantes);
     }
+
 
     @GetMapping("/find-estudiante-by-documento/{documento}")
     public ResponseEntity<Estudiante> findEstudianteByDocumentoEstudiante(@PathVariable String documento){
@@ -39,7 +38,9 @@ public class EstudianteController {
         return ResponseEntity.ok(estudiante);
     }
 
-    @GetMapping("/find-estudiante-by-usuario/{usuario}")
+
+  
+     @GetMapping("/find-estudiante-by-usuarios/{usuario}")
     public ResponseEntity<EstudianteDTO> findByUsuarioInstitucional(@PathVariable String usuario){
 
         var estudiante = estudianteService.findEstudianteByUsuarioInstitucional(usuario);
@@ -56,5 +57,11 @@ public class EstudianteController {
 
         return ResponseEntity.ok(estudianteDTO);
     }
-
+  
+     //findEstudianteByUsuarioInstitucional
+    @GetMapping("/find-estudiante-by-usuario/{usuario}")
+    public ResponseEntity<Estudiante> findEstudianteByUsuarioInstitucional(@PathVariable String usuario){
+        var estudiante = estudianteService.findEstudianteByUsuarioInstitucional(usuario);
+        return ResponseEntity.ok(estudiante);
+    }
 }

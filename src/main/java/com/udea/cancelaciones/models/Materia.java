@@ -1,6 +1,6 @@
 package com.udea.cancelaciones.models;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import com.sun.istack.NotNull;
 import lombok.Data;
 
@@ -28,11 +28,12 @@ public class Materia {
     @Column(name = "habilitable")
     private String habilitable;
 
+
     @JsonIgnore
     @OneToMany(mappedBy = "materia", fetch = FetchType.LAZY)
     private Set<EstudianteMateria> estudianteMateriaSet;
 
-/*
+
     @OneToMany(mappedBy = "materia", fetch = FetchType.LAZY)
     private Set<ProfesorMateria> profesorMateriaSet;*/
 

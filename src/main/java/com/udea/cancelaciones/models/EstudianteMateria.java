@@ -28,9 +28,6 @@ public class EstudianteMateria {
     @Column(name = "estado")
     private String estado;
 
-
-
-
     //RELACIONES
     @ManyToOne
     @JoinColumn(name ="documento_estudiante", updatable = false, insertable = false)
@@ -38,11 +35,13 @@ public class EstudianteMateria {
 
     @ManyToOne
     @JoinColumn(name = "id_materia", updatable = false, insertable = false)
+
     private Materia materia;
 
     @OneToOne
     @JoinColumn(name = "id_solicitud_cancelacion")
     private SolicitudCancelacion solicitudCancelacion;
+
 
 
     public EstudianteMateria() {

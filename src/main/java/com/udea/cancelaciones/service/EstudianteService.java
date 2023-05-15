@@ -1,8 +1,10 @@
 package com.udea.cancelaciones.service;
 
 import com.udea.cancelaciones.models.Estudiante;
+import com.udea.cancelaciones.models.EstudianteMateria;
 import com.udea.cancelaciones.repository.EstudianteRepository;
 import org.springframework.stereotype.Service;
+
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -20,8 +22,6 @@ public class EstudianteService {
     }
 
 
-
-
     public List<Estudiante> findAll(){
         var listaEstudiantes = estudianteRepository.findAll();
         return listaEstudiantes;
@@ -32,10 +32,12 @@ public class EstudianteService {
         return estudiante;
     }
 
+
     public Estudiante findByUsuarioInstitucional(String usuario){
         var estudiante = estudianteRepository.findByUsuarioInstitucional(usuario);
         return estudiante;
     }
+
 
     public Estudiante findEstudianteByUsuarioInstitucional(String usuario){
         var estudiante = estudianteRepository.findEstudianteByUsuarioInstitucional(usuario);

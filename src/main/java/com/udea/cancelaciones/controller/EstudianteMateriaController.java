@@ -19,13 +19,12 @@ public class EstudianteMateriaController {
     //http://localhost:8080/api/estudiante-materia/find-all
     //http://localhost:8080/api/estudiante-materia/get-materia-estudiante/992023
 
+
     private EstudianteMateriaService estudianteMateriaService;
 
     public EstudianteMateriaController(EstudianteMateriaService estudianteMateriaService) {
         this.estudianteMateriaService = estudianteMateriaService;
     }
-
-
 
 
     @GetMapping("/find-all")
@@ -36,7 +35,7 @@ public class EstudianteMateriaController {
 
     @GetMapping("/get-materia-estudiante/{documento}")
     public ResponseEntity<List<EstudianteMateria>> getMateriasPorDocumentoEstudiante(@PathVariable String documento){
-        var materiasEstudiante = estudianteMateriaService.findAllByDocumentoEstudiante(documento);
+        var materiasEstudiante = estudianteMateriaService.findEstudianteMateriasPorDocumentoEstudiante(documento);
         return ResponseEntity.ok(materiasEstudiante);
     }
 }

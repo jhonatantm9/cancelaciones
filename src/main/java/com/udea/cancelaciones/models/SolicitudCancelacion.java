@@ -2,7 +2,13 @@ package com.udea.cancelaciones.models;
 
 import com.sun.istack.NotNull;
 import lombok.Data;
+
+
+
+
+
 import javax.persistence.*;
+import java.util.Set;
 
 
 @Entity
@@ -42,14 +48,17 @@ public class SolicitudCancelacion {
 
     //RELACIONES
 
+
     @ManyToOne
     @JoinColumn(name = "documento_estudiante", updatable = false, insertable = false)
+
     private Estudiante estudiante;
 
 
 
     @OneToOne(mappedBy = "solicitudCancelacion")
     private EstudianteMateria estudianteMateria;
+
 
 
     public SolicitudCancelacion() {
