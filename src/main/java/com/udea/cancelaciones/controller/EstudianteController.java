@@ -1,6 +1,8 @@
 package com.udea.cancelaciones.controller;
 
+import com.udea.cancelaciones.DTO.EstudianteDTO;
 import com.udea.cancelaciones.models.Estudiante;
+import com.udea.cancelaciones.service.EstudianteMateriaService;
 import com.udea.cancelaciones.service.EstudianteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +17,13 @@ public class EstudianteController {
 
     @Autowired
     private EstudianteService estudianteService;
+    private EstudianteMateriaService estudianteMateriaService;
+
+
+    public EstudianteController(EstudianteService estudianteService, EstudianteMateriaService estudianteMateriaService) {
+        this.estudianteService = estudianteService;
+        this.estudianteMateriaService = estudianteMateriaService;
+    }
 
     @GetMapping("/find-all")
     public ResponseEntity<List<Estudiante>> findAll(){
@@ -28,8 +37,7 @@ public class EstudianteController {
         return ResponseEntity.ok(listaEstudiantes.get(0));
     }
 
-    //http://localhost:8080/api/estudiante/find-estudiante-by-documento?documento=123456
-    //http://localhost:8080/api/estudiante/find-estudiante-by-documento/123456
+
     @GetMapping("/find-estudiante-by-documento/{documento}")
     public ResponseEntity<Estudiante> findEstudianteByDocumentoEstudiante(@PathVariable String documento){
         var estudiante = estudianteService.findEstudianteByDocumentoEstudiante(documento);
@@ -41,5 +49,22 @@ public class EstudianteController {
     public ResponseEntity<Estudiante> findEstudianteByUsuarioInstitucional(@PathVariable String usuario){
         var estudiante = estudianteService.findEstudianteByUsuarioInstitucional(usuario);
         return ResponseEntity.ok(estudiante);
+    }
+    @GetMapping("/find-estudiante-by-usuarios/{usuario}")
+    public ResponseEntity<EstudianteDTO> findByUsuarioInstitucional(@PathVariable String usuario){
+
+        var estudiante = estudianteService.findEstudianteByUsuarioInstitucional(usuario);
+
+        var materias = estudianteMateriaService.findAllByDocumentoEstudiante(estudiante.getDocumentoEstudiante());
+
+        EstudianteDTO estudianteDTO = new EstudianteDTO();
+
+        estudianteDTO.setNombre(estudiante.getNombre());
+        estudianteDTO.setApellido(estudiante.getApellido());
+
+        estudianteDTO.setListaMaterias(materias);
+
+
+        return ResponseEntity.ok(estudianteDTO);
     }
 }

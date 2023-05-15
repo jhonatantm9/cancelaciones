@@ -2,6 +2,7 @@ package com.udea.cancelaciones.models;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 import lombok.Data;
 
@@ -51,14 +52,14 @@ public class Estudiante{
     @Column(name = "contraseña")
     private String contraseña;
 
-/*
     //RELACIONES
-    @OneToMany(mappedBy = "estudiante", fetch = FetchType.LAZY)
+    @JsonIgnore
+    @OneToMany(mappedBy = "estudiante")
     private Set<EstudianteMateria> estudianteMateriaSet;
 
-
+    @JsonIgnore
     @OneToMany(mappedBy = "estudiante", fetch = FetchType.LAZY)
-    private Set<SolicitudCancelacion> solicitudCancelacionSet;*/
+    private Set<SolicitudCancelacion> solicitudCancelacionSet;
 
     public Estudiante(){
 
