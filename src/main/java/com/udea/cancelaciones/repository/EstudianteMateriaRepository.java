@@ -11,6 +11,7 @@ public interface EstudianteMateriaRepository extends JpaRepository<EstudianteMat
 
 
     List<EstudianteMateria> findEstudianteMateriaByDocumentoEstudiante(String documento);
+    List<EstudianteMateria> findAllByDocumentoEstudiante(String documento);
 
     //@Query("SELECT * FROM EstudianteMateria em WHERE em.documentoEstudiante = :documentoEstudiante")
     //List<EstudianteMateria> findEstudianteMateriaByDocumentoEstudiante

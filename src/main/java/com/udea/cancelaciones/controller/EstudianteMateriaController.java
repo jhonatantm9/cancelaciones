@@ -37,4 +37,9 @@ public class EstudianteMateriaController {
         var materiasEstudiante = estudianteMateriaService.findEstudianteMateriasPorDocumentoEstudiante(documento);
         return ResponseEntity.ok(materiasEstudiante);
     }
+    @GetMapping("/find-materia-estudiante/{documento}")
+    public ResponseEntity<List<EstudianteMateria>> findMateriasPorDocumentoEstudiante(@PathVariable String documento){
+        var materiasEstudiante = estudianteMateriaService.findAllByDocumentoEstudiante(documento);
+        return ResponseEntity.ok(materiasEstudiante);
+    }
 }

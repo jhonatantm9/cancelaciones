@@ -29,4 +29,9 @@ public class EstudianteMateriaService {
         var materiasEstudiante = estudianteMateriaRepository.findEstudianteMateriaByDocumentoEstudiante(documento);
         return materiasEstudiante;
     }
+
+    public List<EstudianteMateria> findAllByDocumentoEstudiante(String documento){
+        var materiasEstudiante = estudianteMateriaRepository.findAllByDocumentoEstudiante(documento);
+        return materiasEstudiante;
+    }
 }

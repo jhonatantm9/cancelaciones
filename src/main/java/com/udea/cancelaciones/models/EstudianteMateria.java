@@ -30,17 +30,17 @@ public class EstudianteMateria {
 
 
     //RELACIONES
-    /*@ManyToOne
-    @JoinColumn(name ="documento_estudiante")
+    @ManyToOne
+    @JoinColumn(name ="documento_estudiante", updatable = false, insertable = false)
     private Estudiante estudiante;
 
     @ManyToOne
-    @JoinColumn(name = "id_materia")
+    @JoinColumn(name = "id_materia", updatable = false, insertable = false)
     private Materia materia;
 
     @OneToOne
     @JoinColumn(name = "id_solicitud_cancelacion")
-    private SolicitudCancelacion solicitudCancelacion;*/
+    private SolicitudCancelacion solicitudCancelacion;
 
 
     public EstudianteMateria() {
