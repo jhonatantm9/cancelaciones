@@ -35,6 +35,5 @@ public class Materia {
     private Set<ProfesorMateria> profesorMateriaSet;*/
 
     public Materia() {
-
     }
 }
