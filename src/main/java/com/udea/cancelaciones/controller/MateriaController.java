@@ -13,8 +13,8 @@ import com.udea.cancelaciones.models.Materia;
 import com.udea.cancelaciones.service.MateriaService;
 
 @RestController
-@CrossOrigin(origins = "*")
 @RequestMapping("/materia")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class MateriaController {
     
     @Autowired

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.udea.cancelaciones.DTO.LoginDTO;
+import com.udea.cancelaciones.DTO.DatosFormLoginDTO;
 import com.udea.cancelaciones.DTO.LoginMensajeDTO;
 import com.udea.cancelaciones.service.LoginService;
 
@@ -21,7 +21,7 @@ public class LoginController {
     private LoginService loginService;
 
     @PostMapping
-    public ResponseEntity<LoginMensajeDTO> autenticacionlogin(@RequestBody LoginDTO loginDTO){
+    public ResponseEntity<LoginMensajeDTO> autenticacionlogin(@RequestBody DatosFormLoginDTO loginDTO){
         var mensaje = loginService.AutenticarLogin(loginDTO);
         return ResponseEntity.ok(mensaje);
     }

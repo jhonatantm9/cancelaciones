@@ -5,6 +5,7 @@ import com.udea.cancelaciones.models.EstudianteMateria;
 import com.udea.cancelaciones.service.EstudianteMateriaService;
 import com.udea.cancelaciones.service.EstudianteService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 @RestController
 @RequestMapping("/estudiante-materia")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class EstudianteMateriaController {
 
     //ENLACES

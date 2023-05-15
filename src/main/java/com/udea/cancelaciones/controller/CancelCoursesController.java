@@ -1,7 +1,10 @@
 package com.udea.cancelaciones.controller;
 
 import com.udea.cancelaciones.models.SolicitudCancelacion;
+import com.udea.cancelaciones.service.EstudianteService;
 import com.udea.cancelaciones.service.SolicitudCancelacionService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,24 +14,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.udea.cancelaciones.DTO.CancelarMateriaDTO;
+import com.udea.cancelaciones.DTO.DatosFormCancelarMatDTO;
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/cancel-courses-api")
 public class CancelCoursesController {
 
 
+    public static int idSolicitud = 7;
 
-
+    @Autowired
     private SolicitudCancelacionService solicitudCancelacionService;
 
-    public CancelCoursesController(SolicitudCancelacionService solicitudCancelacionService) {
-        this.solicitudCancelacionService = solicitudCancelacionService;
-    }
-
-
-
-
+    @Autowired
+    private EstudianteService estudianteService; 
 
     @GetMapping
     public String getMessage(){
@@ -36,19 +36,21 @@ public class CancelCoursesController {
     }
 
     @PostMapping 
-    public void cancelarCurso(@RequestBody CancelarMateriaDTO cancelarMateriaDTO){
-        System.out.println(cancelarMateriaDTO.getIdMateria()+" | | "+cancelarMateriaDTO.getJustificacionCancelacion());
+    public void cancelarCurso(@RequestBody DatosFormCancelarMatDTO datosFormCancelarMatDTO){
+        System.out.println(datosFormCancelarMatDTO.getIdMateria()+" | | "+datosFormCancelarMatDTO.getMotivo());
+        
+        idSolicitud++;
 
+        var estudiante = estudianteService.findEstudianteByUsuarioInstitucional(datosFormCancelarMatDTO.getUser());
 
         SolicitudCancelacion cancelacion = new SolicitudCancelacion();
-
-        cancelacion.setIdSolicitudCancelacion(cancelarMateriaDTO.getIdSolicitudCancelacion());
-        cancelacion.setDocumentoEstudiante(cancelarMateriaDTO.getDocumentoEstudiante());
-        cancelacion.setIdMateria(cancelarMateriaDTO.getIdMateria());
-        cancelacion.setDocumentoProfesor(cancelarMateriaDTO.getDocumentoProfesor());
-        cancelacion.setTipoSolicitud(cancelarMateriaDTO.getTipoSolicitud());
-        cancelacion.setEstadoSolicitud(cancelarMateriaDTO.getEstadoSolicitud());
-        cancelacion.setJustificacionCancelacion(cancelarMateriaDTO.getJustificacionCancelacion());
+        cancelacion.setIdSolicitudCancelacion("SC00"+idSolicitud);
+        cancelacion.setDocumentoEstudiante(estudiante.getDocumentoEstudiante());
+        cancelacion.setIdMateria(datosFormCancelarMatDTO.getIdMateria());
+        cancelacion.setDocumentoProfesor("1111111111");
+        cancelacion.setTipoSolicitud("Cancelación");
+        cancelacion.setEstadoSolicitud("Pendiente");
+        cancelacion.setJustificacionCancelacion(datosFormCancelarMatDTO.getMotivo());
 
         solicitudCancelacionService.guardarSolicitudCancelacion(cancelacion);
     }

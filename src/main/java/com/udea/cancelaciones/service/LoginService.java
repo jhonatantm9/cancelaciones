@@ -3,7 +3,7 @@ package com.udea.cancelaciones.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.udea.cancelaciones.DTO.LoginDTO;
+import com.udea.cancelaciones.DTO.DatosFormLoginDTO;
 import com.udea.cancelaciones.DTO.LoginMensajeDTO;
 import com.udea.cancelaciones.repository.EstudianteRepository;
 import javax.transaction.Transactional;
@@ -15,7 +15,7 @@ public class LoginService {
     @Autowired
     private EstudianteRepository estudianteRepository;
 
-    public LoginMensajeDTO AutenticarLogin(LoginDTO loginDTO){
+    public LoginMensajeDTO AutenticarLogin(DatosFormLoginDTO loginDTO){
         var estudiante = estudianteRepository.findEstudianteByUsuarioInstitucional(loginDTO.getUsuario());
 
         if (estudiante != null){
