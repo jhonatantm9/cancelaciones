@@ -1,5 +1,6 @@
 package com.udea.cancelaciones.service;
 
+import com.udea.cancelaciones.DTO.CancelarMateriaDTO;
 import com.udea.cancelaciones.models.SolicitudCancelacion;
 import com.udea.cancelaciones.repository.SolicitudCancelacionRepository;
 import org.springframework.stereotype.Service;
@@ -36,6 +37,10 @@ public class SolicitudCancelacionService {
     public List<SolicitudCancelacion> findAllByDocumentoEstudiante(String documento){
         var solicitud = solicitudCancelacionRepository.findAllByDocumentoEstudiante(documento);
         return solicitud;
+    }
+
+    public void guardarSolicitudCancelacion(SolicitudCancelacion solicicitudCancelacion){
+       solicitudCancelacionRepository.save(solicicitudCancelacion);
     }
 
 }

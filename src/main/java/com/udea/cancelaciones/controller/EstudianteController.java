@@ -7,13 +7,15 @@ import com.udea.cancelaciones.service.EstudianteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
 @CrossOrigin(origins="*")
 @RequestMapping("/estudiante")
 public class EstudianteController {
+
+
+
 
     @Autowired
     private EstudianteService estudianteService;
@@ -24,6 +26,9 @@ public class EstudianteController {
         this.estudianteService = estudianteService;
         this.estudianteMateriaService = estudianteMateriaService;
     }
+
+
+
 
     @GetMapping("/find-all")
     public ResponseEntity<List<Estudiante>> findAll(){
@@ -43,17 +48,19 @@ public class EstudianteController {
         var estudiante = estudianteService.findEstudianteByDocumentoEstudiante(documento);
         return ResponseEntity.ok(estudiante);
     }
-    
+
+
     @GetMapping("/find-estudiante-by-usuario/{usuario}")
     public ResponseEntity<Estudiante> findEstudianteByUsuarioInstitucional(@PathVariable String usuario){
         var estudiante = estudianteService.findEstudianteByUsuarioInstitucional(usuario);
         return ResponseEntity.ok(estudiante);
     }
+
+
     @GetMapping("/find-estudiante-by-usuarios/{usuario}")
     public ResponseEntity<EstudianteDTO> findByUsuarioInstitucional(@PathVariable String usuario){
 
         var estudiante = estudianteService.findEstudianteByUsuarioInstitucional(usuario);
-
         var materias = estudianteMateriaService.findAllByDocumentoEstudiante(estudiante.getDocumentoEstudiante());
 
         EstudianteDTO estudianteDTO = new EstudianteDTO();
@@ -62,7 +69,6 @@ public class EstudianteController {
         estudianteDTO.setApellido(estudiante.getApellido());
 
         estudianteDTO.setListaMaterias(materias);
-
 
         return ResponseEntity.ok(estudianteDTO);
     }
