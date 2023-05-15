@@ -43,8 +43,7 @@ public class EstudianteController {
         var estudiante = estudianteService.findEstudianteByDocumentoEstudiante(documento);
         return ResponseEntity.ok(estudiante);
     }
-
-    //findEstudianteByUsuarioInstitucional
+    
     @GetMapping("/find-estudiante-by-usuario/{usuario}")
     public ResponseEntity<Estudiante> findEstudianteByUsuarioInstitucional(@PathVariable String usuario){
         var estudiante = estudianteService.findEstudianteByUsuarioInstitucional(usuario);
