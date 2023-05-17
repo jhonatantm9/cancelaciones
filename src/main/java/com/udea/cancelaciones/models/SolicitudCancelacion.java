@@ -4,7 +4,6 @@ import com.sun.istack.NotNull;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table(name = "solicitud_cancelacion")

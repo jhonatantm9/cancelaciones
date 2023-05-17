@@ -12,6 +12,5 @@ public interface EstudianteRepository extends JpaRepository<Estudiante, Integer>
     public Estudiante findByDocumentoEstudiante(String documento);
     public Estudiante findEstudianteByDocumentoEstudiante(String documento);
 
-    public Estudiante findByUsuarioInstitucional(String usuario);
     public Estudiante findEstudianteByUsuarioInstitucional(String usuario);
 }
