@@ -22,4 +22,6 @@ public class MateriaService {
         var materias = materiaRepository.findAll();
         return materias;
     }
+
+    
 }

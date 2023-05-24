@@ -4,13 +4,11 @@ import com.sun.istack.NotNull;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table(name = "profesor")
 @Data
 public class Profesor {
-
 
     @Id
     @NotNull
@@ -46,12 +44,5 @@ public class Profesor {
     @Column(name = "contraseña")
     private String contraseña;
 
-
-    /*@OneToMany(mappedBy = "profesor", fetch = FetchType.LAZY)
-    private Set<ProfesorMateria> profesorMateriaSet;*/
-
-
-    public Profesor() {
-
-    }
+    public Profesor() {}
 }
