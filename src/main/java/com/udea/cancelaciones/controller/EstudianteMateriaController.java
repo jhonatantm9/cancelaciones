@@ -4,6 +4,8 @@ import com.udea.cancelaciones.models.Estudiante;
 import com.udea.cancelaciones.models.EstudianteMateria;
 import com.udea.cancelaciones.service.EstudianteMateriaService;
 import com.udea.cancelaciones.service.EstudianteService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,12 +23,8 @@ public class EstudianteMateriaController {
     //http://localhost:8080/api/estudiante-materia/find-all
     //http://localhost:8080/api/estudiante-materia/get-materia-estudiante/992023
 
-    
+    @Autowired
     private EstudianteMateriaService estudianteMateriaService;
-
-    public EstudianteMateriaController(EstudianteMateriaService estudianteMateriaService) {
-        this.estudianteMateriaService = estudianteMateriaService;
-    }
 
     @GetMapping("/find-all")
     public ResponseEntity<List<EstudianteMateria>> findAll(){

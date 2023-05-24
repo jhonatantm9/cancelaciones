@@ -28,6 +28,17 @@ public class EstudianteMateria {
     @Column(name = "estado")
     private String estado;
 
+    @NotNull
+    @Column(name = "grupo")
+    private String grupo;
+
+    @NotNull
+    @Column(name = "porcentaje_evaluado")
+    private double porcentajeEvaluado;
+
+    @NotNull
+    @Column(name = "nota")
+    private double nota;
 
     //RELACIONES
     @ManyToOne

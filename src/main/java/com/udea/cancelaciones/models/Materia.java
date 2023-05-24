@@ -28,6 +28,10 @@ public class Materia {
     @Column(name = "habilitable")
     private String habilitable;
 
+    @NotNull
+    @Column(name = "codigo")
+    private String codigo;
+
     @JsonIgnore
     @OneToMany(mappedBy = "materia", fetch = FetchType.LAZY)
     private Set<EstudianteMateria> estudianteMateriaSet;

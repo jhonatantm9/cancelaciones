@@ -5,21 +5,37 @@ import org.springframework.stereotype.Service;
 
 import com.udea.cancelaciones.DTO.DatosFormLoginDTO;
 import com.udea.cancelaciones.DTO.LoginMensajeDTO;
+import com.udea.cancelaciones.models.Estudiante;
 import com.udea.cancelaciones.repository.EstudianteRepository;
 import javax.transaction.Transactional;
 
 @Service
 @Transactional
 public class LoginService {
-    
+
     @Autowired
     private EstudianteRepository estudianteRepository;
 
-    public LoginMensajeDTO AutenticarLogin(DatosFormLoginDTO loginDTO){
+    public Estudiante AutenticarLogin(DatosFormLoginDTO loginDTO) {
         var estudiante = estudianteRepository.findEstudianteByUsuarioInstitucional(loginDTO.getUsuario());
 
-        if (estudiante != null){
-            if (estudiante.getContraseña().equals(loginDTO.getContraseña())){
+        if (estudiante != null) {
+            if (estudiante.getContraseña().equals(loginDTO.getContraseña())) {
+                return estudiante;
+            } else {
+                throw new RuntimeException("Invalid credentials");
+            }
+        } else {
+            throw new RuntimeException("Invalid credentials");
+        }
+    }
+
+    // Version antigua
+    public LoginMensajeDTO AutenticarLoginAn(DatosFormLoginDTO loginDTO) {
+        var estudiante = estudianteRepository.findEstudianteByUsuarioInstitucional(loginDTO.getUsuario());
+
+        if (estudiante != null) {
+            if (estudiante.getContraseña().equals(loginDTO.getContraseña())) {
                 return new LoginMensajeDTO("El login fue exitoso", true);
             } else {
                 return new LoginMensajeDTO("Contraseña incorrecta", false);

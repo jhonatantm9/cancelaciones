@@ -14,11 +14,10 @@ import java.util.List;
 @RequestMapping("/estudiante")
 public class EstudianteController {
 
-
-
-
     @Autowired
     private EstudianteService estudianteService;
+
+    @Autowired
     private EstudianteMateriaService estudianteMateriaService;
 
 
@@ -26,9 +25,6 @@ public class EstudianteController {
         this.estudianteService = estudianteService;
         this.estudianteMateriaService = estudianteMateriaService;
     }
-
-
-
 
     @GetMapping("/find-all")
     public ResponseEntity<List<Estudiante>> findAll(){
@@ -55,7 +51,6 @@ public class EstudianteController {
         var estudiante = estudianteService.findEstudianteByUsuarioInstitucional(usuario);
         return ResponseEntity.ok(estudiante);
     }
-
 
     @GetMapping("/find-estudiante-by-usuarios/{usuario}")
     public ResponseEntity<EstudianteDTO> findByUsuarioInstitucional(@PathVariable String usuario){
