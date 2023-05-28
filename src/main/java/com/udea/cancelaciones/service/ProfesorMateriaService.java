@@ -12,7 +12,7 @@ import com.udea.cancelaciones.repository.ProfesorMateriaRepository;
 
 @Service
 @Transactional
-public class ProfesorMateriaService {
+public class ProfesorMateriaService implements IProfesorMateria{
     
     @Autowired
     private ProfesorMateriaRepository profesorMateriaRepository;

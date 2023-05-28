@@ -26,11 +26,4 @@ public class EstudianteController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
         }
     }
-
-    //¿sobra?
-    @GetMapping("/find-estudiante-by-documento/{documento}")
-    public ResponseEntity<Estudiante> findEstudianteByDocumentoEstudiante(@PathVariable String documento) {
-        var estudiante = estudianteService.findEstudianteByDocumentoEstudiante(documento);
-        return ResponseEntity.ok(estudiante);
-    }
 }

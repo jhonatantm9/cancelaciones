@@ -11,19 +11,13 @@ import com.udea.cancelaciones.repository.ProfesorRepository;
 
 @Service
 @Transactional
-public class ProfesorService {
+public class ProfesorService implements IProfesorService{
     
     @Autowired
     private ProfesorRepository profesorRepository;
 
-    public Profesor findProfesorByUsuarioInstitucional(String usuario){
-        var profesor = profesorRepository.findProfesorByUsuarioInstitucional(usuario);
-        return profesor;
-    }
-
     public Profesor autenticar(DatosFormLoginDTO loginDTO) {
         var profesor = profesorRepository.findProfesorByUsuarioInstitucional(loginDTO.getUsuario());
-
         if (profesor != null) {
             if (profesor.getContraseña().equals(loginDTO.getContraseña())) {
                 return profesor;

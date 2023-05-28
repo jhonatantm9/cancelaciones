@@ -10,6 +10,5 @@ import com.udea.cancelaciones.models.ProfesorMateria;
 @Repository
 public interface ProfesorMateriaRepository extends JpaRepository<ProfesorMateria, Integer>{
     ProfesorMateria findByIdMateria(String idMateria);
-    
     List<ProfesorMateria> findAllByDocumentoProfesor(String documentoProfesor);
 }

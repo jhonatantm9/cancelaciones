@@ -29,13 +29,6 @@ public class SolicitudCancelacionController {
     @Autowired
     private SolicitudCancelacionService solicitudCancelacionService;
 
-    //Borrar - Solo esta para pruebas
-    @GetMapping("/find-all")
-    public ResponseEntity<List<SolicitudCancelacion>> findAll() {
-        var solicitudes = solicitudCancelacionService.findAll();
-        return ResponseEntity.ok(solicitudes);
-    }
-
     @PutMapping("/actualizar-estado")
     public void actualizarEstadoSolicitud(@RequestBody DatosCambiarEstadoDTO datosCambiarEstadoDTO){
         solicitudCancelacionService.cambiarEstadoSolicitud(

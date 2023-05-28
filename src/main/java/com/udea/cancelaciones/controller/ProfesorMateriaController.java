@@ -23,5 +23,4 @@ public class ProfesorMateriaController {
         var materias = profesorMateriaService.findAllByDocumentoProfesor(documento);
         return ResponseEntity.ok(materias);
     }
-
 }

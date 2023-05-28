@@ -8,25 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.udea.cancelaciones.models.EstudianteMateria;
-import com.udea.cancelaciones.models.Materia;
 import com.udea.cancelaciones.repository.EstudianteMateriaRepository;
-import com.udea.cancelaciones.repository.MateriaRepository;
 
 @Service
 @Transactional
-public class EstudianteMateriaService {
+public class EstudianteMateriaService implements IEstudianteMateria{
     
     @Autowired
-    private MateriaRepository materiaRepository;
-
-    @Autowired
     private EstudianteMateriaRepository estudianteMateriaRepository;
-
-    //Borrar esto
-    public List<Materia> findAll(){
-        var materias = materiaRepository.findAll();
-        return materias;
-    }
 
     public void cambiarEstadoMateria(String documentoEstudiante, String idMateria, String estado) {
         var estudianteMateria = estudianteMateriaRepository.findByMateriaAndDocumento(idMateria, documentoEstudiante);

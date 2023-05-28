@@ -10,13 +10,9 @@ import java.util.List;
 
 @Repository
 public interface SolicitudCancelacionRepository extends JpaRepository<SolicitudCancelacion, Integer> {
-
     SolicitudCancelacion findByIdSolicitudCancelacion(String id);
-
     List<SolicitudCancelacion> findAllByDocumentoEstudiante(String documento);
-
     boolean existsByIdSolicitudCancelacion(String idSolicitud);
-    
     void deleteByIdSolicitudCancelacion(String idSolicitudCancelacion);
     
     @Query("SELECT sc FROM SolicitudCancelacion sc WHERE sc.idMateria = :idMateriaParam AND sc.documentoProfesor = :documentoProfesorParam")

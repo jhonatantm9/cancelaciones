@@ -9,11 +9,8 @@ import java.util.List;
 
 @Repository
 public interface EstudianteMateriaRepository extends JpaRepository<EstudianteMateria, Integer> {
-
     void deleteByIdMateriaAndDocumentoEstudiante(String idMateria, String DocumentoEstudiante);
-
     List<EstudianteMateria> findEstudianteMateriaByDocumentoEstudiante(String documento);
-
     List<EstudianteMateria> findAllByDocumentoEstudiante(String documentoEstudiante);
 
     @Query("SELECT em FROM EstudianteMateria em WHERE em.idMateria = :idMateriaParam AND em.documentoEstudiante = :documentoEstudianteParam")

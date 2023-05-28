@@ -13,7 +13,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public class SolicitudCancelacionService {
+public class SolicitudCancelacionService implements ISolicitudCancelacion{
 
     @Autowired
     private SolicitudCancelacionRepository solicitudCancelacionRepository;
@@ -24,65 +24,53 @@ public class SolicitudCancelacionService {
     @Autowired
     private EstudianteMateriaService estudianteMateriaService;
 
-    // Deberia de sobrar - solo para pruebas
-    public List<SolicitudCancelacion> findAll() {
-        var solicitudes = solicitudCancelacionRepository.findAll();
-        return solicitudes;
-    }
-
     public void cambiarEstadoSolicitud(String idSolicitud, String estadoSolicitud) {
         var solicitud = solicitudCancelacionRepository.findByIdSolicitudCancelacion(idSolicitud);
         String estadoMateria="";
-
         if (estadoSolicitud.compareTo("Aceptada") == 0) {
             estadoMateria = "Cancelada";
         } else if (estadoSolicitud.compareTo("Rechazada") == 0){
             estadoMateria = "Cursando";
         }
-
         estudianteMateriaService.cambiarEstadoMateria(solicitud.getDocumentoEstudiante(), 
             solicitud.getIdMateria(), estadoMateria);
-
         solicitud.setEstadoSolicitud(estadoSolicitud);
         solicitudCancelacionRepository.save(solicitud);
     }
 
     public void eliminarSolicitud(String idSolicitud) {
+        var solicitud = solicitudCancelacionRepository.findByIdSolicitudCancelacion(idSolicitud);
+        estudianteMateriaService.cambiarEstadoMateria(solicitud.getDocumentoEstudiante(), 
+            solicitud.getIdMateria(), "Cursando");
         solicitudCancelacionRepository.deleteByIdSolicitudCancelacion(idSolicitud);
     }
 
     public List<SolicitudCancelacion> findAllByDocumentoEstudiante(String documento) {
         var solicitud = solicitudCancelacionRepository.findAllByDocumentoEstudiante(documento);
-
         for (int i = 0; i < solicitud.size(); i++) {
             var estudianteMateria = estudianteMateriaService
                     .findByMateriaAndDocumento(solicitud.get(i).getIdMateria(),
                             solicitud.get(i).getDocumentoEstudiante());
             solicitud.get(i).setEstudianteMateria(estudianteMateria);
         }
-
         return solicitud;
     }
 
     public List<SolicitudCancelacion> findAllByDocumentoProfesorAndMateria(String idMateria, String documento) {
         var solicitud = solicitudCancelacionRepository.findAllByDocumentoProfesorAndMateria(idMateria, documento);
-
         for (int i = 0; i < solicitud.size(); i++) {
             var estudianteMateria = estudianteMateriaService
                     .findByMateriaAndDocumento(solicitud.get(i).getIdMateria(),
                             solicitud.get(i).getDocumentoEstudiante());
             solicitud.get(i).setEstudianteMateria(estudianteMateria);
         }
-
         return solicitud;
     }
 
     public void guardarSolicitudCancelacion(DatosFormCancelarMatDTO datosFormCancelarMatDTO) {
-
         if (solicitudCancelacionRepository.findByMateriaAndDocumentoEstudiante(datosFormCancelarMatDTO.getIdMateria(),
                 datosFormCancelarMatDTO.getDocumentoEstudiante()) == null) {
             SolicitudCancelacion cancelacion = new SolicitudCancelacion();
-
             cancelacion.setIdSolicitudCancelacion(this.generarIdSolicitud());
             cancelacion.setDocumentoEstudiante(datosFormCancelarMatDTO.getDocumentoEstudiante());
             cancelacion.setIdMateria(datosFormCancelarMatDTO.getIdMateria());
@@ -91,6 +79,8 @@ public class SolicitudCancelacionService {
             cancelacion.setEstadoSolicitud("Pendiente");
             cancelacion.setJustificacionCancelacion(datosFormCancelarMatDTO.getMotivo());
 
+            estudianteMateriaService.cambiarEstadoMateria(datosFormCancelarMatDTO.getDocumentoEstudiante(), 
+            datosFormCancelarMatDTO.getIdMateria(), "En espera");
             solicitudCancelacionRepository.save(cancelacion);
 
         } else {
@@ -107,7 +97,6 @@ public class SolicitudCancelacionService {
         String idSolicitud = "";
         boolean existeId = true;
         int contador = 0;
-
         while (existeId) {
             contador++;
             if (contador < 10) {

@@ -9,18 +9,16 @@ import org.springframework.stereotype.Service;
 
 
 import javax.transaction.Transactional;
-import java.util.List;
 
 @Service
 @Transactional
-public class EstudianteService {
+public class EstudianteService implements IEstudianteService{
 
     @Autowired
     private EstudianteRepository estudianteRepository;
 
     public Estudiante autenticar(DatosFormLoginDTO loginDTO) {
         var estudiante = estudianteRepository.findEstudianteByUsuarioInstitucional(loginDTO.getUsuario());
-
         if (estudiante != null) {
             if (estudiante.getContraseña().equals(loginDTO.getContraseña())) {
                 return estudiante;
@@ -30,22 +28,5 @@ public class EstudianteService {
         } else {
             throw new RuntimeException("Invalid credentials");
         }
-    }
-
-    //Metodo para pruebas 
-    public List<Estudiante> findAll(){
-        var listaEstudiantes = estudianteRepository.findAll();
-        return listaEstudiantes;
-    }
-
-    //Creo que este metodo se usuara 
-    public Estudiante findEstudianteByDocumentoEstudiante(String documento){
-        var estudiante = estudianteRepository.findEstudianteByDocumentoEstudiante(documento);
-        return estudiante;
-    }
-
-    public Estudiante findEstudianteByUsuarioInstitucional(String usuario){
-        var estudiante = estudianteRepository.findEstudianteByUsuarioInstitucional(usuario);
-        return estudiante;
     }
 }
