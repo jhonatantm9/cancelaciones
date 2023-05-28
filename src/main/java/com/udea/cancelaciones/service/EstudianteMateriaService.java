@@ -1,37 +1,50 @@
 package com.udea.cancelaciones.service;
 
-import com.udea.cancelaciones.models.Estudiante;
-import com.udea.cancelaciones.models.EstudianteMateria;
-import com.udea.cancelaciones.repository.EstudianteMateriaRepository;
-import org.springframework.stereotype.Service;
-
+import java.util.List;
 
 import javax.transaction.Transactional;
-import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.udea.cancelaciones.models.EstudianteMateria;
+import com.udea.cancelaciones.models.Materia;
+import com.udea.cancelaciones.repository.EstudianteMateriaRepository;
+import com.udea.cancelaciones.repository.MateriaRepository;
 
 @Service
 @Transactional
 public class EstudianteMateriaService {
+    
+    @Autowired
+    private MateriaRepository materiaRepository;
 
+    @Autowired
     private EstudianteMateriaRepository estudianteMateriaRepository;
 
-    public EstudianteMateriaService(EstudianteMateriaRepository estudianteMateriaRepository){
-        this.estudianteMateriaRepository = estudianteMateriaRepository;
+    //Borrar esto
+    public List<Materia> findAll(){
+        var materias = materiaRepository.findAll();
+        return materias;
     }
 
-
-    public List<EstudianteMateria> findAll(){
-        var listaEstudiantes = estudianteMateriaRepository.findAll();
-        return listaEstudiantes;
+    public void cambiarEstadoMateria(String documentoEstudiante, String idMateria, String estado) {
+        var estudianteMateria = estudianteMateriaRepository.findByMateriaAndDocumento(idMateria, documentoEstudiante);
+        estudianteMateria.setEstado(estado);
+        estudianteMateriaRepository.save(estudianteMateria);
     }
 
-    public List<EstudianteMateria> findEstudianteMateriasPorDocumentoEstudiante(String documento){
-        var materiasEstudiante = estudianteMateriaRepository.findEstudianteMateriaByDocumentoEstudiante(documento);
-        return materiasEstudiante;
+    public List<EstudianteMateria> findAllByDocumentoEstudiante(String documentoEstudiante){
+        var estudianteMaterias = estudianteMateriaRepository.findAllByDocumentoEstudiante(documentoEstudiante);
+        return estudianteMaterias;
     }
 
-    public List<EstudianteMateria> findAllByDocumentoEstudiante(String documento){
-        var materiasEstudiante = estudianteMateriaRepository.findAllByDocumentoEstudiante(documento);
-        return materiasEstudiante;
+    public EstudianteMateria findByMateriaAndDocumento(String idMateria, String documentoEstudiante){
+        var estudianteMateria = estudianteMateriaRepository.findByMateriaAndDocumento(idMateria, documentoEstudiante);
+        return estudianteMateria;
+    }
+
+    public void deleteByIdMateriaAndDocumentoEstudiante(String idMateria, String DocumentoEstudiante){
+        estudianteMateriaRepository.deleteByIdMateriaAndDocumentoEstudiante(idMateria, DocumentoEstudiante);
     }
 }

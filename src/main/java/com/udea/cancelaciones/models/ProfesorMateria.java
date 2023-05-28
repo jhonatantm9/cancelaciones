@@ -23,6 +23,13 @@ public class ProfesorMateria {
     @NotNull
     private String semestreMatricula;
 
+    @Column(name = "grupo")
+    @NotNull
+    private String grupo;
+
+    @ManyToOne
+    @JoinColumn(name = "id_materia", updatable = false, insertable = false)
+    private Materia materia;
 
     /*@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "documento_profesor", insertable=false, updatable=false)

@@ -4,6 +4,7 @@ import com.udea.cancelaciones.models.EstudianteMateria;
 
 import java.util.List;
 
+//Creo que esta clase sobra
 public class EstudianteDTO {
 
     private String nombre;

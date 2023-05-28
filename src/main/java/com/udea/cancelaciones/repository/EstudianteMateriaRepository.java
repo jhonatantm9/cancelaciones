@@ -6,14 +6,16 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+
 @Repository
 public interface EstudianteMateriaRepository extends JpaRepository<EstudianteMateria, Integer> {
 
+    void deleteByIdMateriaAndDocumentoEstudiante(String idMateria, String DocumentoEstudiante);
 
     List<EstudianteMateria> findEstudianteMateriaByDocumentoEstudiante(String documento);
-    List<EstudianteMateria> findAllByDocumentoEstudiante(String documento);
 
-    //@Query("SELECT * FROM EstudianteMateria em WHERE em.documentoEstudiante = :documentoEstudiante")
-    //List<EstudianteMateria> findEstudianteMateriaByDocumentoEstudiante
+    List<EstudianteMateria> findAllByDocumentoEstudiante(String documentoEstudiante);
 
+    @Query("SELECT em FROM EstudianteMateria em WHERE em.idMateria = :idMateriaParam AND em.documentoEstudiante = :documentoEstudianteParam")
+    EstudianteMateria findByMateriaAndDocumento(String idMateriaParam, String documentoEstudianteParam);
 }

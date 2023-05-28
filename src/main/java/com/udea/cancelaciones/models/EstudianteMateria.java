@@ -54,7 +54,5 @@ public class EstudianteMateria {
     private SolicitudCancelacion solicitudCancelacion;
 
 
-    public EstudianteMateria() {
-
-    }
+    public EstudianteMateria() { }
 }

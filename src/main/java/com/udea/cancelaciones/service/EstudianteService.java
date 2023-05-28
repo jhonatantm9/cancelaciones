@@ -18,7 +18,6 @@ public class EstudianteService {
     @Autowired
     private EstudianteRepository estudianteRepository;
 
-    //Para autenticar el usuario y contraseña de un estudiante
     public Estudiante autenticar(DatosFormLoginDTO loginDTO) {
         var estudiante = estudianteRepository.findEstudianteByUsuarioInstitucional(loginDTO.getUsuario());
 

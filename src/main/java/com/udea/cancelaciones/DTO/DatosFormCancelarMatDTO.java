@@ -3,12 +3,12 @@ package com.udea.cancelaciones.DTO;
 public class DatosFormCancelarMatDTO {
     private String idMateria;
     private String motivo;
-    private String user;
+    private String documentoEstudiante;
     
-    public DatosFormCancelarMatDTO(String idMateria, String motivo, String user) {
+    public DatosFormCancelarMatDTO(String idMateria, String motivo, String documentoEstudiante) {
         this.idMateria = idMateria;
         this.motivo = motivo;
-        this.user = user;
+        this.documentoEstudiante = documentoEstudiante;
     }
     public String getIdMateria() {
         return idMateria;
@@ -22,11 +22,10 @@ public class DatosFormCancelarMatDTO {
     public void setMotivo(String motivo) {
         this.motivo = motivo;
     }
-    public String getUser() {
-        return user;
+    public String getDocumentoEstudiante() {
+        return documentoEstudiante;
     }
-    public void setUser(String user) {
-        this.user = user;
+    public void setDocumentoEstudiante(String documentoEstudiante) {
+        this.documentoEstudiante = documentoEstudiante;
     }
-
 }
