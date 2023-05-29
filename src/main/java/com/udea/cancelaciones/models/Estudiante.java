@@ -52,6 +52,14 @@ public class Estudiante{
     @Column(name = "contraseña")
     private String contraseña;
 
+    @NotNull
+    @Column(name = "nivel_academico")
+    private int nivelAcademico;
+
+    @NotNull
+    @Column(name = "programa_academico")
+    private String programaAcademico;
+
     //RELACIONES
     @JsonIgnore
     @OneToMany(mappedBy = "estudiante")

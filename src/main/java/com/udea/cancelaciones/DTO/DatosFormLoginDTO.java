@@ -1,12 +1,12 @@
 package com.udea.cancelaciones.DTO;
 
-public class LoginDTO {
+public class DatosFormLoginDTO {
     private String usuario;
     private String contraseña;
 
-    public LoginDTO(){}
+    public DatosFormLoginDTO(){}
 
-    public LoginDTO(String usuario, String contraseña) {
+    public DatosFormLoginDTO(String usuario, String contraseña) {
         this.usuario = usuario;
         this.contraseña = contraseña;
     }
