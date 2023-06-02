@@ -19,7 +19,7 @@ public class ProfesorService implements IProfesorService{
     public Profesor autenticar(DatosFormLoginDTO loginDTO) {
         var profesor = profesorRepository.findProfesorByUsuarioInstitucional(loginDTO.getUsuario());
         if (profesor != null) {
-            if (profesor.getContraseña().equals(loginDTO.getContraseña())) {
+            if (profesor.getContrasena().equals(loginDTO.getContraseña())) {
                 return profesor;
             } else {
                 throw new RuntimeException("Invalid credentials");

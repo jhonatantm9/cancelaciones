@@ -42,7 +42,7 @@ public class Profesor {
 
     @NotNull
     @Column(name = "contraseña")
-    private String contraseña;
+    private String contrasena;
 
     public Profesor() {}
 }

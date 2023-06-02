@@ -20,7 +20,7 @@ public class EstudianteService implements IEstudianteService{
     public Estudiante autenticar(DatosFormLoginDTO loginDTO) {
         var estudiante = estudianteRepository.findEstudianteByUsuarioInstitucional(loginDTO.getUsuario());
         if (estudiante != null) {
-            if (estudiante.getContraseña().equals(loginDTO.getContraseña())) {
+            if (estudiante.getContrasena().equals(loginDTO.getContraseña())) {
                 return estudiante;
             } else {
                 throw new RuntimeException("Invalid credentials");
