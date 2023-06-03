@@ -50,7 +50,7 @@ public class Estudiante{
 
     @NotNull
     @Column(name = "contraseña")
-    private String contraseña;
+    private String contrasena;
 
     @NotNull
     @Column(name = "nivel_academico")
